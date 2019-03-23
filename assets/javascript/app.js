@@ -4,6 +4,8 @@
 let playerRight = 0;
 let playerWrong = 0;
 let currentQuestion = 0;
+let clockRunning = false;
+let questionClockTime = 10000;
 
 let questionData = [
 
@@ -21,6 +23,7 @@ let questionData = [
 
 ];
 
+let randomData = shuffleArray( questionData );
 
 
 function startScreen() {
@@ -36,7 +39,7 @@ function startScreen() {
 	$("#start-screen").css( "display", "absolute" );
 
 	$("#start-screen button").on( 'click', function(){ 
-		displayQuestion( questionData[currentQuestion] );
+		displayQuestion( randomData[currentQuestion] );
 	});
 
 }
@@ -48,13 +51,17 @@ function displayQuestion( question ) {
 	$("#answer-screen").css( "display", "none" );
 
 	$("#question-screen h4").text( question[0] );
-	
-	
-	randomArray = shuffleArray( [0, 1, 2, 3] );
-	
 
+	randomAnswer = shuffleArray( [0, 1, 2, 3] );
+	
 	for ( i = 0; i < 4; i++ ) {
-		$("#question-screen ul").append( '<li value="' + randomArray[i] + '">' + question[1][randomArray[i]] + '</li>' );
+		$("#question-screen ul").append( '<li value="' + randomAnswer[i] + '">' + question[1][randomAnswer[i]] + '</li>' );
+	}
+
+	if (!clockRunning) { // Set countdown timer.
+		questionClockTime = 10000;
+		clockInterval = setInterval( count, 1000 );
+		clockRunning = true;
 	}
 
 	$("#question-screen").css( "display", "absolute" );
@@ -67,16 +74,19 @@ function displayQuestion( question ) {
 		}
 	});
 	
-	// Set countdown timer.
-
-	// If countdown timer reaches zero,
-		// displayAnswer( question, 0 );
-	//
+	if ( questionClockTime <= 0 ) { // If countdown timer reaches zero,
+		displayAnswer( question, 0 );
+	}
 
 }
 
 
 function displayAnswer( question, result ) {
+
+	clearInterval( clockInterval ); // Reset question countdown timer.
+	questionClockTime = 0;
+	 $("#display-clock").text("00:00");
+	clockRunning = false;
 
 	$("#start-screen").css( "display", "none" );
 	$("#question-screen").css( "display", "none" );
@@ -98,13 +108,14 @@ function displayAnswer( question, result ) {
 	$("#answer-screen").css( "display", "absolute" );
 
 	currentQuestion++;
-	
-	// This will be timed. Set countdown timer here.
-	if ( currentQuestion > ( questionData.length - 1 )) {
-		finalPage();
-	} else {
-		displayQuestion( questionData[currentQuestion] );
-	}
+
+	setTimeout(function(){ // This will be timed. Set countdown timer here.
+		if ( currentQuestion > ( questionData.length - 1 )) {
+			finalPage();
+		} else {
+			displayQuestion( randomData[currentQuestion] );
+		}
+	}, 5000);
 
 }
 
@@ -113,6 +124,9 @@ function finalPage() {
 
 	$("#question-screen").css( "display", "none" );
 	$("#answer-screen").css( "display", "none" );
+
+	$("#total-correct span").text( playerRight );
+	$("#total-incorrect span").text( playerWrong );
 
 	$("#final-page").css( "display", "absolute" );
 
@@ -123,19 +137,26 @@ function finalPage() {
 }
 
 
+function count() {
+	questionClockTime--; // DONE: increment time by 1, remember we cant use "this" here.
+	var timeConverted = timeConverter( questionClockTime ); // DONE: Get the current time, pass that into the timeConverter function, and save the result in a variable.
+	$("#display-clock").text( timeConverted ); // DONE: Use the variable we just created to show the converted time in the "display" div.
+}
+
+
 //  Takes the current time in seconds and convert it to minutes and seconds (mm:ss).
 function timeConverter(t) {
-  var minutes = Math.floor(t / 60);
-  var seconds = t - (minutes * 60);
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-  if (minutes === 0) {
-    minutes = "00";
-  } else if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  return minutes + ":" + seconds;
+	var minutes = Math.floor(t / 60);
+	var seconds = t - (minutes * 60);
+	if (seconds < 10) {
+		seconds = "0" + seconds;
+	}
+	if (minutes === 0) {
+		minutes = "00";
+	} else if (minutes < 10) {
+		minutes = "0" + minutes;
+	}
+	return minutes + ":" + seconds;
 }
 
 
