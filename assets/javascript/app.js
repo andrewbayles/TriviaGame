@@ -5,7 +5,7 @@ let playerRight = 0;
 let playerWrong = 0;
 let currentQuestion = 0;
 let clockRunning = false;
-let questionClockTime = 10000;
+let questionClockTime;
 
 let questionData = [
 
@@ -36,7 +36,7 @@ function startScreen() {
 	$("#answer-screen").css( "display", "none" );
 	$("#final-page").css( "display", "none" );
 
-	$("#start-screen").css( "display", "absolute" );
+	$("#start-screen").css( "display", "block" );
 
 	$("#start-screen button").on( 'click', function(){ 
 		displayQuestion( randomData[currentQuestion] );
@@ -52,6 +52,10 @@ function displayQuestion( question ) {
 
 	$("#question-screen h4").text( question[0] );
 
+	$("#question-screen ul li").remove(); // Remove all previous displayed options.
+
+	$("#display-clock").text("00:15");
+
 	randomAnswer = shuffleArray( [0, 1, 2, 3] );
 	
 	for ( i = 0; i < 4; i++ ) {
@@ -59,12 +63,23 @@ function displayQuestion( question ) {
 	}
 
 	if (!clockRunning) { // Set countdown timer.
-		questionClockTime = 10000;
-		clockInterval = setInterval( count, 1000 );
+		questionClockTime = 15;
+		
+		clockInterval = setInterval( function(){ 
+			questionClockTime--; // DONE: decrement time by 1, remember we cant use "this" here.
+
+			if ( questionClockTime <= 0 ) { // If countdown timer reaches zero,
+				displayAnswer( question, 0 );
+			}
+
+			var timeConverted = timeConverter( questionClockTime ); // DONE: Get the current time, pass that into the timeConverter function, and save the result in a variable.
+			$("#display-clock").text( timeConverted ); // DONE: Use the variable we just created to show the converted time in the "display" div.
+		}, 1000 );
+
 		clockRunning = true;
 	}
 
-	$("#question-screen").css( "display", "absolute" );
+	$("#question-screen").css( "display", "block" );
 
 	$("#question-screen li").on( 'click', function(){
 		if ( $(this).attr('value') == 0 ) {
@@ -73,10 +88,6 @@ function displayQuestion( question ) {
 			displayAnswer( question, 1 );
 		}
 	});
-	
-	if ( questionClockTime <= 0 ) { // If countdown timer reaches zero,
-		displayAnswer( question, 0 );
-	}
 
 }
 
@@ -103,9 +114,9 @@ function displayAnswer( question, result ) {
 	}
 
 	$("#answer-screen h5").text( question[1][0] ); // Display correct answer.
-	$("#answer-screen img").attr( "src", "assets/images/" + question[2][0] ); // Display matching image.
+	// $("#answer-screen img").attr( "src", "assets/images/" + question[2][0] ); // Display matching image. BUG: Cannot read 0 of undefined.
 
-	$("#answer-screen").css( "display", "absolute" );
+	$("#answer-screen").css( "display", "block" );
 
 	currentQuestion++;
 
@@ -128,19 +139,12 @@ function finalPage() {
 	$("#total-correct span").text( playerRight );
 	$("#total-incorrect span").text( playerWrong );
 
-	$("#final-page").css( "display", "absolute" );
+	$("#final-page").css( "display", "block" );
 
 	$("#final-page button").on( 'click', function(){ 
 		startScreen();
 	});
 
-}
-
-
-function count() {
-	questionClockTime--; // DONE: increment time by 1, remember we cant use "this" here.
-	var timeConverted = timeConverter( questionClockTime ); // DONE: Get the current time, pass that into the timeConverter function, and save the result in a variable.
-	$("#display-clock").text( timeConverted ); // DONE: Use the variable we just created to show the converted time in the "display" div.
 }
 
 
