@@ -1,0 +1,142 @@
+body {
+	background-color: #eeeeee;
+	background-image: url("../images/mario_art_wallpaper.jpg");
+	color: #777777;
+	font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+	font-size: 16px;
+	position: relative;
+}
+
+div.screen {
+	display: none;
+	position: fixed;
+    height: 50%;
+    left: 50%;
+    margin-top: 10%;
+}
+
+div.screen.displayed {
+	display: block;
+}
+
+div.screen-inner {
+	position: relative;
+	left: -50%;
+}
+
+#start-screen {
+	text-align: center;
+}
+
+#start-screen h1 {
+	font-family: 'Carter One', cursive;
+	font-size: 4rem;
+	line-height: 5.2rem;
+}
+
+#start-screen h2 {
+	font-family: 'Black Ops One', cursive;
+	font-size: 1.6rem;
+	margin-bottom: 2rem;
+	margin-top: 1.0rem;
+}
+
+#start-screen button {
+	font-size: 1.2rem;
+    border: 0;
+    background-color: #aaaaaa;
+    padding: 1rem 2rem;
+    color: #ffffff;
+    border-radius: 1rem;
+}
+
+#start-screen .screen-inner {
+	background-color: #fafafa;
+    padding: 2rem;
+    border-radius: 1.6rem;
+}
+
+#start-screen button:hover {
+	background-color: #777777;
+}
+
+#question-screen {
+
+}
+
+#question-screen .screen-inner {
+    background-color: #fafafa;
+    padding: 2rem;
+    border-radius: 1.6rem;
+}
+
+#question-screen h4 {
+	font-size: 1.8rem;
+    line-height: 2.6rem;
+    margin-bottom: 1.8rem;
+}
+
+#question-screen ul {
+	margin-left: 35%;
+}
+
+#question-screen li {
+	list-style-type: square;
+    line-height: 2.2rem;
+    font-size: 1.2rem;
+}
+
+#question-screen li:hover {
+	/* background-color: #add6ff;
+	border: 1px solid #2994ff; */
+	font-weight: bold;
+}
+
+#display-clock {
+	text-align: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-top: 1.4rem;
+}
+
+#answer-screen {
+
+}
+
+#answer-screen .screen-inner {
+	background-color: #fafafa;
+    padding: 2rem;
+    border-radius: 1.6rem;
+    text-align: center;
+}
+
+#answer-screen h4 {
+	font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+#answer-screen p {
+	margin-bottom: 0.6rem;
+}
+
+#answer-screen h5 {
+	font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+}
+
+#answer-screen img {
+	max-width: 320px;
+    border: 8px solid #fff;
+    margin-top: 1.4rem;
+}
+
+#final-page {
+
+}
+
+#final-page .screen-inner {
+	background-color: #fafafa;
+    padding: 2rem;
+    border-radius: 1.6rem;
+}

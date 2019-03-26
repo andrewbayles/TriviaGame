@@ -17,7 +17,7 @@ function startScreen() { // Start screen. Initialize the game.
 
 	clearScreens();
 
-	$("#start-screen").css( "display", "block" );
+	$("#start-screen").addClass( "displayed" );
 
 	$("#start-screen button").on( 'click', function(){ 
 		displayQuestion( randomData[currentQuestion] );
@@ -38,7 +38,7 @@ function displayQuestion( question ) { // Question screen. Takes the next questi
 	for ( i = 0; i < 4; i++ ) {
 		$("#question-screen ul").append( '<li value="' + randomAnswer[i] + '">' + question[1][randomAnswer[i]] + '</li>' );
 	}
-
+	
 	if (!clockRunning) { // Set countdown timer.
 		questionClockTime = 15;
 		
@@ -56,7 +56,7 @@ function displayQuestion( question ) { // Question screen. Takes the next questi
 		clockRunning = true;
 	}
 
-	$("#question-screen").css( "display", "block" );
+	$("#question-screen").addClass( "displayed" );
 
 	$("#question-screen li").on( 'click', function(){
 		if ( $(this).attr('value') == 0 ) { // If the correct answer is selected,
@@ -90,12 +90,12 @@ function displayAnswer( question, result ) { // Displays the correct answer for 
 	}
 
 	$("#answer-screen h5").text( question[1][0] ); // Display correct answer.
-	$("#answer-screen img").attr( "src", "assets/images/" + question[2][0] ); // Display matching image. BUG: Cannot read 0 of undefined.
+	$("#answer-screen img").attr( "src", "assets/images/" + question[2][0] ); // Display matching image.
 
-	$("#answer-screen").css( "display", "block" );
+	$("#answer-screen").addClass( "displayed" );
 
 	currentQuestion++; // Increment the currently presented random question.
-
+	
 	setTimeout(function(){ // Set countdown timer.
 		if ( currentQuestion > ( questionData.length - 1 )) { // If we're out of questions,
 			finalPage();
@@ -114,7 +114,7 @@ function finalPage() {
 	$("#total-correct span").text( playerRight );
 	$("#total-incorrect span").text( playerWrong );
 
-	$("#final-page").css( "display", "block" );
+	$("#final-page").addClass( "displayed" );
 
 	$("#final-page button").on( 'click', function(){
 		randomData = shuffleArray( questionData ); // Re-randomize the order of questions before running the game again.
@@ -126,10 +126,10 @@ function finalPage() {
 
 // Clear all displayed screens in preparation for the next one.
 function clearScreens() {
-	$("#start-screen").css( "display", "none" );
-	$("#question-screen").css( "display", "none" );
-	$("#answer-screen").css( "display", "none" );
-	$("#final-page").css( "display", "none" );
+	$("#start-screen").removeClass( "displayed" );
+	$("#question-screen").removeClass( "displayed" );
+	$("#answer-screen").removeClass( "displayed" );
+	$("#final-page").removeClass( "displayed" );
 }
 
 
