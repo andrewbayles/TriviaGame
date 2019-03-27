@@ -71,9 +71,9 @@ div.screen-inner {
 }
 
 #question-screen h4 {
-	font-size: 1.8rem;
+	font-size: 1.6rem;
     line-height: 2.6rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.2rem;
 }
 
 #question-screen ul {
@@ -116,7 +116,7 @@ div.screen-inner {
 }
 
 #answer-screen p {
-	margin-bottom: 0.6rem;
+	margin-bottom: 1rem;
 }
 
 #answer-screen h5 {
@@ -139,4 +139,47 @@ div.screen-inner {
 	background-color: #fafafa;
     padding: 2rem;
     border-radius: 1.6rem;
+    text-align: center;
+}
+
+#final-page h4 {
+	font-weight: bold;
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+}
+
+#final-page h5 {
+	font-size: 1.2rem;
+    margin-bottom: 1.6rem;
+}
+
+#total-correct {
+	font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+}
+
+#total-incorrect {
+	font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+}
+
+#total-correct span {
+	font-weight: bold;
+}
+
+#total-incorrect span {
+	font-weight: bold;
+}
+
+#final-page button {
+	font-size: 1.2rem;
+    border: 0;
+    background-color: #aaaaaa;
+    padding: 0.6rem 1.6rem;
+    color: #ffffff;
+    border-radius: 0.6rem;
+}
+
+#final-page button:hover {
+	background-color: #777777;
 }

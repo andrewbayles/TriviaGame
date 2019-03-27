@@ -38,7 +38,7 @@ function displayQuestion( question ) { // Question screen. Takes the next questi
 	for ( i = 0; i < 4; i++ ) {
 		$("#question-screen ul").append( '<li value="' + randomAnswer[i] + '">' + question[1][randomAnswer[i]] + '</li>' );
 	}
-	
+
 	if (!clockRunning) { // Set countdown timer.
 		questionClockTime = 15;
 		
