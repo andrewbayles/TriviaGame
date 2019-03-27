@@ -7,13 +7,13 @@ Old-School Gamer Trivia is a simple, timed quiz in which the player guesses the 
 
 ### A Few Things To Remember:
 
-* The player has fifteen second to answer each question presented.
+* The player has fifteen seconds to answer each question presented.
 
 * There are ten questions total, each presented randomly. The answers are randomized for each game, as well.
 
 * The player is presented with their total number of correct and incorrect answers at the end of the game, with an option to start over.
 
-* Running out of time when answering a question counts as an incorrect answer.
+* Running out of time before answering a question counts as an incorrect answer.
 
 
 ### Acknowledgements
