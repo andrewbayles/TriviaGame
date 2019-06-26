@@ -4,6 +4,8 @@
 
 Old-School Gamer Trivia is a simple, timed quiz in which the player guesses the correct answers to a series of gaming-related questions. The results of their answers are tallied and presented at the end of each game.
 
+This app is deployed on GitHub at https://andrewbayles.github.io/TriviaGame/
+
 
 ### A Few Things To Remember:
 
